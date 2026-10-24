@@ -16,6 +16,7 @@ import {
 import { HistoricalLeader, LeaderSlide, SupportedLanguage } from '../types';
 import { UI_TRANSLATIONS } from '../i18n/translations';
 import { audioService } from '../services/audioService';
+import { getAssetUrl } from '../utils/assetUrl';
 
 interface SlideGridProps {
   leader: HistoricalLeader;
@@ -121,7 +122,7 @@ export const SlideGrid: React.FC<SlideGridProps> = ({
                 {slide.imageUrl && (
                   <div className="absolute right-1 bottom-1 w-2/5 h-3/4 opacity-20 pointer-events-none overflow-hidden rounded">
                     <img 
-                      src={slide.imageUrl} 
+                      src={getAssetUrl(slide.imageUrl)} 
                       alt="" 
                       referrerPolicy="no-referrer"
                       loading="lazy"

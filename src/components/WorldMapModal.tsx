@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Globe2, MapPin, ChevronRight, Award } from 'lucide-react';
 import { HistoricalLeader, SupportedLanguage } from '../types';
 import { UI_TRANSLATIONS } from '../i18n/translations';
+import { getAssetUrl } from '../utils/assetUrl';
 
 interface WorldMapModalProps {
   leaders: HistoricalLeader[];
@@ -95,7 +96,7 @@ export const WorldMapModal: React.FC<WorldMapModalProps> = ({
             >
               <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-gold-500/40 bg-black">
                 <img
-                  src={leader.portraitUrl}
+                  src={getAssetUrl(leader.portraitUrl)}
                   alt={leader.name[currentLang]}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   onError={(e) => {

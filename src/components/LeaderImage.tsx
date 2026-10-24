@@ -12,10 +12,21 @@ interface LeaderImageProps {
   roundBadge?: boolean;
 }
 
+// Helper to resolve base-aware path for local images
+function resolveLeaderUrl(originalUrl?: string): string {
+  if (!originalUrl) return '';
+  if (originalUrl.startsWith('/')) {
+    const baseUrl = ((import.meta as any).env?.BASE_URL || '/').replace(/\/$/, '');
+    return `${baseUrl}${originalUrl}`;
+  }
+  return originalUrl;
+}
+
 // Helper to generate Wikimedia fallbacks if an image fails to load
 function generateFallbackUrls(originalUrl?: string): string[] {
   if (!originalUrl) return [];
-  const urls: string[] = [originalUrl];
+  const resolved = resolveLeaderUrl(originalUrl);
+  const urls: string[] = [resolved];
 
   try {
     // If it's a wikimedia commons thumb, extract filename

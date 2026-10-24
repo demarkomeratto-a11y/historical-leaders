@@ -3,6 +3,7 @@ import { X, Volume2, VolumeX, Crown, Quote, Sparkles, Scroll } from 'lucide-reac
 import { HistoricalLeader, SupportedLanguage } from '../types';
 import { UI_TRANSLATIONS } from '../i18n/translations';
 import { audioService } from '../services/audioService';
+import { getAssetUrl } from '../utils/assetUrl';
 
 interface SpeechPlayerModalProps {
   leader: HistoricalLeader;
@@ -73,7 +74,7 @@ export const SpeechPlayerModal: React.FC<SpeechPlayerModalProps> = ({
           {/* Portrait Banner */}
           <div className="flex items-center gap-4 p-4 rounded-xl bg-white/70 border border-crimson-900/20 shadow-xs">
             <img
-              src={leader.portraitUrl}
+              src={getAssetUrl(leader.portraitUrl)}
               alt=""
               className="w-16 h-16 rounded-full object-cover border-2 border-gold-500 shadow-md"
             />

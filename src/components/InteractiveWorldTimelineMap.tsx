@@ -21,6 +21,7 @@ import { HistoricalLeader, SupportedLanguage, HistoricalEra } from '../types';
 import { UI_TRANSLATIONS } from '../i18n/translations';
 import { LEADER_GEO_REGISTRY, LeaderGeoMeta } from '../data/leaderGeoData';
 import { getLeaderImperialStats } from '../data/leaderImperialStats';
+import { getAssetUrl } from '../utils/assetUrl';
 
 interface InteractiveWorldTimelineMapProps {
   leaders: HistoricalLeader[];
@@ -311,7 +312,7 @@ export const InteractiveWorldTimelineMap: React.FC<InteractiveWorldTimelineMapPr
     );
 
     const img = new Image();
-    img.src = '/earth-texture.jpg';
+    img.src = getAssetUrl('/earth-texture.jpg');
     img.onload = () => {
       if (!glRef.current || !textureRef.current) return;
       const g = glRef.current;
@@ -665,7 +666,7 @@ export const InteractiveWorldTimelineMap: React.FC<InteractiveWorldTimelineMapPr
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-full w-56 p-3 rounded-xl bg-obsidian-950/95 border border-gold-400 text-parchment-100 shadow-2xl backdrop-blur-md pointer-events-auto z-50 animate-fadeIn">
                     <div className="flex items-center gap-2">
                       <div className="w-10 h-10 rounded-lg overflow-hidden border border-gold-400 shrink-0 bg-black">
-                        <img src={leader.portraitUrl} alt={leader.name[currentLang]} className="w-full h-full object-cover object-top" />
+                        <img src={getAssetUrl(leader.portraitUrl)} alt={leader.name[currentLang]} className="w-full h-full object-cover object-top" />
                       </div>
                       <div className="min-w-0">
                         <h5 className="font-serif font-black text-xs text-gold-200 truncate">{leader.name[currentLang]}</h5>
@@ -685,7 +686,7 @@ export const InteractiveWorldTimelineMap: React.FC<InteractiveWorldTimelineMapPr
           <div className="flex items-start gap-3">
             <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-gold-400 shrink-0 bg-black shadow-lg">
               <img 
-                src={activeLeader.portraitUrl} 
+                src={getAssetUrl(activeLeader.portraitUrl)} 
                 alt={activeLeader.name[currentLang]} 
                 className="w-full h-full object-cover object-top"
               />
