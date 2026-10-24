@@ -22,6 +22,7 @@ import { UI_TRANSLATIONS } from '../i18n/translations';
 import { LEADER_GEO_REGISTRY, LeaderGeoMeta } from '../data/leaderGeoData';
 import { getLeaderImperialStats } from '../data/leaderImperialStats';
 import { getAssetUrl } from '../utils/assetUrl';
+import { LeaderImage } from './LeaderImage';
 
 interface InteractiveWorldTimelineMapProps {
   leaders: HistoricalLeader[];
@@ -642,9 +643,14 @@ export const InteractiveWorldTimelineMap: React.FC<InteractiveWorldTimelineMapPr
                       ? 'border-gold-300 ring-2 ring-gold-400 ring-offset-2 ring-offset-black' 
                       : 'border-gold-500/80 hover:border-gold-300'
                   }`}>
-                    <img 
+                    <LeaderImage 
                       src={leader.portraitUrl} 
                       alt={leader.name[currentLang]}
+                      leaderName={leader.name[currentLang]}
+                      country={leader.country[currentLang]}
+                      era={leader.era}
+                      themeColor={leader.themeColor}
+                      roundBadge={true}
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
@@ -666,7 +672,13 @@ export const InteractiveWorldTimelineMap: React.FC<InteractiveWorldTimelineMapPr
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-full w-56 p-3 rounded-xl bg-obsidian-950/95 border border-gold-400 text-parchment-100 shadow-2xl backdrop-blur-md pointer-events-auto z-50 animate-fadeIn">
                     <div className="flex items-center gap-2">
                       <div className="w-10 h-10 rounded-lg overflow-hidden border border-gold-400 shrink-0 bg-black">
-                        <img src={getAssetUrl(leader.portraitUrl)} alt={leader.name[currentLang]} className="w-full h-full object-cover object-top" />
+                        <LeaderImage 
+                          src={leader.portraitUrl} 
+                          alt={leader.name[currentLang]} 
+                          leaderName={leader.name[currentLang]}
+                          era={leader.era}
+                          className="w-full h-full object-cover object-top" 
+                        />
                       </div>
                       <div className="min-w-0">
                         <h5 className="font-serif font-black text-xs text-gold-200 truncate">{leader.name[currentLang]}</h5>
@@ -685,9 +697,11 @@ export const InteractiveWorldTimelineMap: React.FC<InteractiveWorldTimelineMapPr
         <div className="absolute top-4 right-4 z-30 max-w-xs p-4 rounded-2xl bg-obsidian-950/95 border-2 border-gold-500/60 backdrop-blur-xl shadow-2xl hidden md:block select-none">
           <div className="flex items-start gap-3">
             <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-gold-400 shrink-0 bg-black shadow-lg">
-              <img 
-                src={getAssetUrl(activeLeader.portraitUrl)} 
+              <LeaderImage 
+                src={activeLeader.portraitUrl} 
                 alt={activeLeader.name[currentLang]} 
+                leaderName={activeLeader.name[currentLang]}
+                era={activeLeader.era}
                 className="w-full h-full object-cover object-top"
               />
             </div>
